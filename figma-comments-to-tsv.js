@@ -30,12 +30,13 @@ function usage() {
 }
 
 function headerRow() {
-    return ["Comment", "Created", "Frame", "Tags", "Frame Link"];
+    return ["User", "Comment", "Created", "Frame", "Tags", "Frame Link"];
 }
 
 function toResultRow(data, {FILE_ID}) {
     return function(comment) {
         return [
+            comment.user.handle,
             comment.message,
             comment.created_at,
             lib.getCommentFrame(comment, data).name,
