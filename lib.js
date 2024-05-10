@@ -185,7 +185,7 @@ function generateFrameURL(frame, {FILE_ID}) {
 }
 
 function toCSV(rows) {
-    return rows.map(row => row.map(c=>c.replace(/"/g,'""')).map(c=>`"${c}"`).join("\t")).join("\n");
+    return rows.map(row => row.map(c=>c?.replace(/"/g,'""')).map(c=>`"${c}"`).join("\t")).join("\n");
 }
 
 module.exports = {
