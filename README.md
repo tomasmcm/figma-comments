@@ -19,6 +19,11 @@ There's also a link directly to the frame each comment is on, in prototype mode.
     node figma-comments-to-tsv.js ACCESS_TOKEN FILE_ID > output.tsv
 ```
 
+If instead you'd like the export to be in CSV, run the script like this (only replace ACCESS_TOKEN and FILE_ID):
+```
+    node figma-comments-to-tsv.js ACCESS_TOKEN FILE_ID CSV > output.csv
+```
+
 ## Output
 
 Data in tab-separated format, with columns like this:
