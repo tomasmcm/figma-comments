@@ -1,7 +1,7 @@
 const lib = require("./lib");
 
 async function main() {
-    const {ACCESS_TOKEN, FILE_ID} = getArgs();
+    const {ACCESS_TOKEN, FILE_ID, FORMAT} = getArgs();
     
     const data = await lib.fetchDocumentWithComments({ACCESS_TOKEN, FILE_ID});
 
@@ -10,16 +10,17 @@ async function main() {
         .sort(lib.byCreated)
         .map(toResultRow(data, {FILE_ID}));
 
-    console.log(lib.toCSV([headerRow(), ...rows]));
+    const separator = FORMAT.toUpperCase() === "CSV" ? "," : "\t"
+    console.log(lib.toCSV([headerRow(), ...rows], separator));
 }
 
 main().catch(e => console.error(e));
 
 
 function getArgs() {
-    const [ACCESS_TOKEN, FILE_ID] = process.argv.slice(2);
+    const [ACCESS_TOKEN, FILE_ID, FORMAT] = process.argv.slice(2);
     if (!ACCESS_TOKEN || !FILE_ID) throw usage();
-    return {ACCESS_TOKEN, FILE_ID};
+    return {ACCESS_TOKEN, FILE_ID, FORMAT: FORMAT || "TSV"};
 }
 
 function usage() {

@@ -184,8 +184,8 @@ function generateFrameURL(frame, {FILE_ID}) {
     return `https://www.figma.com/proto/${FILE_ID}/?node-id=${encodeURIComponent(frame.id)}`;
 }
 
-function toCSV(rows) {
-    return rows.map(row => row.map(c=>c?.replace(/"/g,'""')).map(c=>`"${c}"`).join("\t")).join("\n");
+function toCSV(rows, separator="\t") {
+    return rows.map(row => row.map(c=>c?.replace(/"/g,'""')).map(c=>`"${c}"`).join(separator)).join("\n");
 }
 
 module.exports = {
